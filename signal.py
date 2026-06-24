@@ -12,14 +12,12 @@ from typing import Iterator
 class PriceEvent:
     asset: str
     price: float
-    timestamp: float = field(default_factory=time.time)
+    threshold: float = 0.0
+    timestamp: float = field(default_factory=lambda: time.time())
 
     @property
     def is_profitable(self) -> bool:
         return self.price >= self.threshold
-
-    # Threshold is injected by the feed so events are self-contained.
-    threshold: float = 0.0
 
 
 class PriceFeed:
