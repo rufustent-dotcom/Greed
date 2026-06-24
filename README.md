@@ -38,3 +38,30 @@ system response, and deploying the required tools or updates to end-user machine
 - Jamf Now is the action layer for managed-device execution, not the decision-making layer.
 - The value of the system comes from compressing the path from signal detection to approved
   infrastructure response.
+
+## Implementation
+
+| Module | Role |
+|---|---|
+| `signal.py` | Simulates a live price feed and detects profitable trending peaks |
+| `mapping.py` | Translates price events to predefined operational actions |
+| `deployment.py` | Simulates Jamf Now Blueprint deployment across managed devices |
+| `greed.py` | Entry point that wires the three stages into a closed loop |
+
+### Quick start
+
+```bash
+python greed.py
+```
+
+### Options
+
+```
+--asset          Asset name (default: GREED)
+--base-price     Starting price (default: 100.0)
+--threshold      Profit trigger price (default: 110.0)
+--volatility     Price swing per tick (default: 6.0)
+--fleet-size     Number of managed devices (default: 10)
+--ticks          Simulated price ticks before stopping (default: 50)
+--tick-interval  Seconds between ticks (default: 0.1)
+```
