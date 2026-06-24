@@ -2,6 +2,7 @@
 Deployment layer: simulates Jamf Now fleet deployment of a selected package.
 """
 
+import random
 import time
 from dataclasses import dataclass, field
 
@@ -15,7 +16,7 @@ class DeploymentRecord:
     event: PriceEvent
     device_count: int
     success: bool
-    timestamp: float = field(default_factory=time.time)
+    timestamp: float = field(default_factory=lambda: time.time())
 
     def __str__(self) -> str:
         status = "OK" if self.success else "FAILED"
@@ -48,8 +49,6 @@ class JamfNowDeployer:
 
         Returns a DeploymentRecord describing the outcome.
         """
-        import random
-
         print(f"  [deploy] Pushing '{action.package}' to {self.fleet_size} device(s) …")
 
         # Simulate network/API latency.
